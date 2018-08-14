@@ -40,6 +40,12 @@ export default function* addFile(data, cfg, plop) {
 				const renderedTemplate = yield getRenderedTemplate(data, cfg, plop);
 				yield fspp.writeFile(fileDestPath, renderedTemplate);
 			}
+
+			// keep the existing modes (ie file permissions)
+			if (absTemplatePath != null) {
+				const stats = yield fspp.stat(absTemplatePath);
+				yield fspp.chmod(fileDestPath, stats.mode);
+			}
 		}
 
 		// return the added file path (relative to the destination path)

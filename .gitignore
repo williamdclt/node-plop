@@ -14,9 +14,6 @@ node_modules
 # Optional npm cache directory
 .npm
 
-# Compiled src
-lib
-
 # Test mocks
 tests/*-mock/src
 

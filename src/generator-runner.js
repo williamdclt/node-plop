@@ -31,7 +31,7 @@ export default function (plopfileApi, flags) {
 	});
 
 	// Run the actions for this generator
-	const runGeneratorActions = co.wrap(function* (genObject, data) {
+	const runGeneratorActions = function* (genObject, data) {
 		var changes = [];          // array of changed made by the actions
 		var failures = [];         // array of actions that failed
 		var {actions} = genObject; // the list of actions to execute
@@ -89,7 +89,7 @@ export default function (plopfileApi, flags) {
 		}
 
 		return { changes, failures };
-	});
+	};
 
 	// handle action logic
 	const executeActionLogic = co.wrap(function* (action, cfg, data) {

@@ -44,7 +44,9 @@ export default co.wrap(function* (data, cfg, plop) {
 		filesAdded.push(addedPath);
 	}
 
-	return `${filesAdded.length} files added\n -> ${filesAdded.join('\n -> ')}`;
+	const summary = `${filesAdded.length} files added`;
+	if (cfg.quiet) return summary;
+	else return `${summary}\n -> ${filesAdded.join('\n -> ')}`;
 });
 
 function resolveTemplateFiles(templateFilesGlob, basePath, globOptions, plop) {
